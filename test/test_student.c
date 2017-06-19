@@ -9,7 +9,15 @@ void tearDown(void)
 {
 }
 
-void test_student_NeedToImplement(void)
+void test_student(void)
 {
-    TEST_IGNORE_MESSAGE("Need to Implement student");
+    struct Student ali =
+    {
+      "Ali",23,72.35,1.78
+    };
+    
+    struct Student baba =
+    {
+      "baba",15,42.35,1.60  
+    };
 }
