@@ -20,4 +20,8 @@ void test_student(void)
     {
       "baba",15,42.35,1.60  
     };
+    struct Student abu =
+    {
+      "baba",25,80.35,1.80  
+    };
 }

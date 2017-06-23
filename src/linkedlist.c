@@ -23,6 +23,5 @@ else
     list->tail=item;
     list->tail->next = NULL;
   }
-  
-  
+ 
 }

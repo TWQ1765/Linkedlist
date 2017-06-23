@@ -23,7 +23,16 @@ Item itemBaba = {
   (Item *)-44444456,   //next
   (void *)&baba       //data
 };
-
+Student abu = {
+  "Abu",     //name
+  25,        //age
+  80.35,     //weight
+  1.80       //height
+};
+Item itemAbu = {
+  (Item *)-66666666,   //next
+  (void *)&abu       //data
+};
 void setUp(void)
 {
 }
@@ -31,19 +40,24 @@ void setUp(void)
 void tearDown(void)
 {
 }
+
+/*test 1  
+
+*/
 void test_listInit_esure_initialized_to_NULL_and_0(void){
   LinkedList list = {
-    (Item *)-1,
-    (Item *)-1,
-    10
+    (Item *)-1,       // head  
+    (Item *)-1,       // tail 
+    10                // len = 0 
   };
-  listInit(&list);
+  listInit(&list);    // call void listInit(linkedList *list)
+  // test the initialisation success or not.
   TEST_ASSERT_NULL(list.head);  //test head-> null
   TEST_ASSERT_NULL(list.tail);   //test tail-> null
   TEST_ASSERT_EQUAL(0,list.len);  //test len == 0
 }
 
-/*test1*
+/*test2*
 *  Initial              After adding Ali
 *
 *   tail----+             tail ----+
@@ -58,20 +72,7 @@ void test_listInit_esure_initialized_to_NULL_and_0(void){
 *
 */
 
-/*test2*
-*  Initial              After adding Ali
-*
-*   tail----+             tail ----+
-*   head----+             head ----+
-*           |                      |
-*         next--------+            next----------next-------+        
-*          data---+   |            data---+       data--+   |  
-*                 | Null                  |             |  Null
-*                Ali                     Ali         Baba
-*                ..                      ..          ..
-*
-*
-*/
+
 void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
   LinkedList list;
 
@@ -87,7 +88,20 @@ void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
 
 
 
-
+/*test2*
+*  Initial              After adding Ali
+*
+*   tail----+             tail ----+
+*   head----+             head ----+
+*           |                      |
+*         next--------+            next----------next-------+        
+*          data---+   |            data---+       data--+   |  
+*                 | Null                  |             |  Null
+*                Ali                     Ali         Baba
+*                ..                      ..          ..
+*
+*
+*/
 void test_listAdd_an_empty_linked_list_then_baba_expect_2_list(void) {
 LinkedList list;
 
@@ -107,4 +121,25 @@ TEST_ASSERT_EQUAL_PTR(&itemBaba, itemAli.next);
 TEST_ASSERT_EQUAL_PTR(&ali, itemAli.data);
 TEST_ASSERT_NULL(itemBaba.next);
 TEST_ASSERT_EQUAL_PTR(&ali, itemAli.data);
+}
+
+void test_listAdd_an_empty_linked_list_then_abu_expect_2_list(void) {
+LinkedList list;
+
+listInit(&list);
+
+list.head = &itemBaba;
+list.tail = &itemBaba;
+list.len = 1;
+itemBaba.next = NULL;
+itemAbu.next = (Item *)-1;
+
+listAdd(&list, &itemAbu);
+TEST_ASSERT_EQUAL_PTR(&itemBaba, list.head);
+TEST_ASSERT_EQUAL_PTR(&itemBaba, list.tail);
+TEST_ASSERT_EQUAL(3, list.len);
+TEST_ASSERT_EQUAL_PTR(&itemAbu, itemBaba.next);
+TEST_ASSERT_EQUAL_PTR(&baba, itemBaba.data);
+TEST_ASSERT_NULL(itemBaba.next);
+TEST_ASSERT_EQUAL_PTR(&baba, itemBaba.data);
 }
