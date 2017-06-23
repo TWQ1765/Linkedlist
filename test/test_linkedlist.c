@@ -68,14 +68,10 @@ void test_listInit_esure_initialized_to_NULL_and_0(void){
 *                                         |    Null 
 *                                         Ali
 *                                         ..
-*Given an
 *
 */
-
-
 void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
   LinkedList list;
-
 //printf("address of item: %p\n", &item);
   listInit(&list);
   listAdd(&list, &itemAli);
@@ -85,9 +81,6 @@ void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
   TEST_ASSERT_NULL(itemAli.next);
   TEST_ASSERT_EQUAL_PTR(&ali, itemAli.data);
 }
-
-
-
 /*test2*
 *  Initial              After adding Ali
 *
@@ -100,13 +93,12 @@ void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
 *                Ali                     Ali         Baba
 *                ..                      ..          ..
 *
-*
 */
 void test_listAdd_an_empty_linked_list_then_baba_expect_2_list(void) {
 LinkedList list;
 
 listInit(&list);
-
+//start initialisation
 list.head = &itemAli;
 list.tail = &itemAli;
 list.len = 1;
@@ -114,6 +106,7 @@ itemAli.next = NULL;
 itemBaba.next = (Item *)-1;
 
 listAdd(&list, &itemBaba);
+//test start here
 TEST_ASSERT_EQUAL_PTR(&itemAli, list.head);
 TEST_ASSERT_EQUAL_PTR(&itemBaba, list.tail);
 TEST_ASSERT_EQUAL(2, list.len);
@@ -123,23 +116,37 @@ TEST_ASSERT_NULL(itemBaba.next);
 TEST_ASSERT_EQUAL_PTR(&ali, itemAli.data);
 }
 
-void test_listAdd_an_empty_linked_list_then_abu_expect_2_list(void) {
+/*test3*
+*  before adding Ali 
+*
+*  tail ----+                       tail----+
+*  head ----+                       head----+
+*           |                               |
+*         next-------next----------+       next-------next------next------+
+*         data---+    data--+      |      data---+   data---+   data--+   |
+*                |          |    Null            |          |         |  Null
+*               Ali        Baba                Ali        Baba      Abu
+*               ..         ..                  ..           ..      ..
+*
+*/
+void test_listAdd_an_empty_linked_list_then_abu_expect_3_list(void) {
 LinkedList list;
 
 listInit(&list);
-
+//start initialisation
 list.head = &itemBaba;
 list.tail = &itemBaba;
-list.len = 1;
+list.len = 2;
 itemBaba.next = NULL;
-itemAbu.next = (Item *)-1;
+itemAbu.next = (Item *)-2;
 
 listAdd(&list, &itemAbu);
+//test start here 
 TEST_ASSERT_EQUAL_PTR(&itemBaba, list.head);
-TEST_ASSERT_EQUAL_PTR(&itemBaba, list.tail);
+TEST_ASSERT_EQUAL_PTR(&itemAbu, list.tail);
 TEST_ASSERT_EQUAL(3, list.len);
 TEST_ASSERT_EQUAL_PTR(&itemAbu, itemBaba.next);
 TEST_ASSERT_EQUAL_PTR(&baba, itemBaba.data);
-TEST_ASSERT_NULL(itemBaba.next);
+TEST_ASSERT_NULL(itemAbu.next);
 TEST_ASSERT_EQUAL_PTR(&baba, itemBaba.data);
 }
