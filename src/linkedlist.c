@@ -23,5 +23,7 @@ else
     list->tail=item;
     list->tail->next = NULL;
   }
- 
+Item *listRemoveFrist(LinkedList *list);
+
+  if  
 }

@@ -22,6 +22,6 @@ void test_student(void)
     };
     struct Student abu =
     {
-      "baba",25,80.35,1.80  
+      "abu",25,80.35,1.80  
     };
 }
