@@ -23,7 +23,19 @@ else
     list->tail=item;
     list->tail->next = NULL;
   }
-Item *listRemoveFrist(LinkedList *list);
+Item *listRemoveFrist(LinkedList *list){
 
-  if  
+  if  (list->head == list->tail){
+    list->head = NULL;
+    list->tail = NULL;
+    list->len = 0;
+  }
+  else{
+    list->head = list->head->next;
+    list->len-=1;
+  }
+}
+
+Item *listRemovehead(LinkedList *list, char *name){
+  
 }

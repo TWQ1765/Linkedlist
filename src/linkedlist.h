@@ -20,7 +20,7 @@ struct LinkedList
 void listInit(LinkedList *list);
 void listAdd(LinkedList *list, Item *item);
 Item *listRemoveFrist(LinkedList *list);
-Item *listRemove(LinkedList *list, char *name);  //strcmp()
+Item *listRemovehead(LinkedList *list, char *name);  //strcmp()
 
 #endif // _LINKEDLIST_H
         

@@ -64,10 +64,10 @@ void test_listInit_esure_initialized_to_NULL_and_0(void){
 *   head----+             head ----+
 *           |                      |
 *         Null                    next --------+
-*                                   data---+   |
-*                                         |    Null 
-*                                         Ali
-*                                         ..
+*                                 data---+     |
+*                                        |    Null 
+*                                       Ali
+*                                       ..
 *
 */
 void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
@@ -81,17 +81,17 @@ void test_listAdd_an_empty_linked_list_then_ali_expect_1_list(void) {
   TEST_ASSERT_NULL(itemAli.next);
   TEST_ASSERT_EQUAL_PTR(&ali, itemAli.data);
 }
-/*test2*
+/*test3*
 *  Initial              After adding Ali
 *
 *   tail----+             tail ----+
 *   head----+             head ----+
 *           |                      |
 *         next--------+            next----------next-------+        
-*          data---+   |            data---+       data--+   |  
-*                 | Null                  |             |  Null
-*                Ali                     Ali         Baba
-*                ..                      ..          ..
+*         data---+    |            data---+      data--+    |  
+*                |  Null                  |            |  Null
+*               Ali                     Ali          Baba
+*               ..                      ..            ..
 *
 */
 void test_listAdd_an_empty_linked_list_then_baba_expect_2_list(void) {
@@ -116,7 +116,7 @@ void test_listAdd_an_empty_linked_list_then_baba_expect_2_list(void) {
   TEST_ASSERT_EQUAL_PTR(&ali, itemAli.data);
 }
 
-/*test3*
+/*test4*
 *  before adding Ali 
 *
 *  tail ----+                       tail----+
@@ -153,4 +153,17 @@ void test_listAdd_an_empty_linked_list_then_abu_expect_3_list(void) {
 
 void test_listRemove_Ali_linked_list_expect_4_list(void) {
   LinkedList list;
+  
+  listInit(&list);
+  list.head = &itemBaba;
+  list.tail = &itemBaba;
+  list.len = 2;
+  itemBaba.next = NULL;
+  itemAbu.next = (Item *)-2;
+  
+  
+}
+  
+  
+  
   
